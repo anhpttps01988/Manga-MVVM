@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.example.anhptt.petprojectmanga.R" />
+
+        <variable
+            name="listener"
+            type="com.example.anhptt.petprojectmanga.activities.fragments.slidemenu.adapter.SlideMenuListAction" />
+
+        <variable
+            name="slideMenu"
+            type="com.example.anhptt.petprojectmanga.activities.fragments.slidemenu.model.SlideMenu" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/headerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="@{slideMenu.header ? View.VISIBLE : View.GONE}">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="10dp"
+                android:text="@{slideMenu.name}"
+                android:textColor="@color/colorWhite"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/itemView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@{slideMenu.selection ? @color/colorBlueGrayDark : android.R.color.transparent}"
+            android:onClick="@{(view) -> listener.onClick(slideMenu, view)}"
+            android:orientation="horizontal"
+            android:visibility="@{slideMenu.header ? View.GONE : View.VISIBLE}">
+
+            <View
+                android:layout_width="4dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorOrange"
+                android:visibility="@{slideMenu.selection ? View.VISIBLE : View.INVISIBLE}" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="4dp"
+                app:srcVector="@{slideMenu.icon}" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:text="@{slideMenu.name}"
+                android:textColor="@color/colorWhite"
+                android:textSize="13dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>
